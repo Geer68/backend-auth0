@@ -1,6 +1,5 @@
 package com.example.backend_auth0.controllers;
 
-import com.example.backend_auth0.entities.Especialidades;
 import com.example.backend_auth0.repository.EspecialidadesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "test")
-public class TestController {
+public class EspecialidadController {
     @Autowired
     EspecialidadesRepository especialidadesRepo;
 
