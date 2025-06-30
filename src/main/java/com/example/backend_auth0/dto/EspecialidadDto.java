@@ -6,5 +6,5 @@ import lombok.Data;
 @Data
 public class EspecialidadDto {
     private int id;
-    private String nombre;
+    private String nombreEspecialidad;
 }
