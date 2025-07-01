@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 public class EspecialidadDto {
-    private int id;
-    private String nombreEspecialidad;
+    private Integer id;
+    private String nombre;
 }
