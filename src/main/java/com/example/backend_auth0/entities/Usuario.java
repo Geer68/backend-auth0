@@ -11,6 +11,7 @@ import java.time.OffsetDateTime;
 
 @Entity
 @Table(name = "usuarios")
+@Inheritance(strategy = InheritanceType.JOINED) // o TABLE_PER_CLASS
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor

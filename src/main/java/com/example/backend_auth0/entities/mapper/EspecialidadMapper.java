@@ -11,9 +11,9 @@ public interface EspecialidadMapper {
 
     EspecialidadMapper Instancia = Mappers.getMapper(EspecialidadMapper.class);
 
-    @Mapping(source = "nombre", target = "nombreEspecialidad")
+    @Mapping(source = "nombre", target = "nombre")
     EspecialidadDto especialidadToEspecialidadDto(Especialidad especialidad);
 
-    @Mapping(source = "nombreEspecialidad", target = "nombre")
+    @Mapping(source = "nombre", target = "nombre")
     Especialidad especialidadDtoToEspecialidad(EspecialidadDto especialidadDto);
 }

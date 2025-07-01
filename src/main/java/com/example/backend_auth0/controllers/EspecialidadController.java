@@ -17,7 +17,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "test")
-public class TestController {
+public class EspecialidadController {
     @Autowired
     EspecialidadRepository especialidadRepository;
 
@@ -30,18 +30,18 @@ public class TestController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. Por favor intente más tarde.\"}");
         }
     }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable Integer id) {
-        Optional<Especialidad> isEspecialidad = especialidadRepository.findById(id);
-        if (isEspecialidad.isPresent()) {
-            Especialidad especialidad = isEspecialidad.get();
-            EspecialidadDto returnValor = EspecialidadMapper.Instancia.especialidadToEspecialidadDto(especialidad);
-            return ResponseEntity.status(HttpStatus.OK).body(returnValor);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. Por favor intente más tarde.\"}");
-        }
-
-    }
+//
+//    @GetMapping("/{id}")
+//    public ResponseEntity<?> getById(@PathVariable Integer id) {
+//        Optional<Especialidad> isEspecialidad = especialidadRepository.findById(id);
+//        if (isEspecialidad.isPresent()) {
+//            Especialidad especialidad = isEspecialidad.get();
+//            EspecialidadDto returnValor = EspecialidadMapper.Instancia.especialidadToEspecialidadDto(especialidad);
+//            return ResponseEntity.status(HttpStatus.OK).body(returnValor);
+//        } else {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. Por favor intente más tarde.\"}");
+//        }
+//
+//    }
 
 }
