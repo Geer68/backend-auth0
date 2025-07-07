@@ -17,7 +17,7 @@ import java.time.OffsetDateTime;
 @AllArgsConstructor
 @Getter
 @Setter
-public abstract class Usuario extends BaseEntity{
+public class Usuario extends BaseEntity{
 
     @Column(name = "auth0_id", unique = true, nullable = false)
     private String auth0Id;
