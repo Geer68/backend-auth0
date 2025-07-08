@@ -14,18 +14,14 @@ public class AuthService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public boolean login(Jwt jwt){
-        String sub = jwt.getClaim("sub");
-        String email = jwt.getClaim("email");
-        String nombre = jwt.getClaim("name");
-
-        Optional<Usuario> user = usuarioRepository.findByAuth0Id(sub);
+    public boolean createAccount(String auth0Id, String nombre, String email) {
+        Optional<Usuario> user = usuarioRepository.findByAuth0Id(auth0Id);
 
         if(user.isEmpty()) {
             Usuario usuario = new Usuario();
             usuario.setEmail(email);
             usuario.setNombre(nombre);
-            usuario.setAuth0Id(sub);
+            usuario.setAuth0Id(auth0Id);
             usuario.setApellido(nombre);
             usuarioRepository.save(usuario);
         }
