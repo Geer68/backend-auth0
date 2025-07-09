@@ -6,15 +6,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.OffsetDateTime;
 
 @Entity
-@Table(name = "pacientes")
+@Table(name = "administradores")
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Paciente extends BaseEntity {
+public class Administrador extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,9 +27,8 @@ public class Paciente extends BaseEntity {
     @JoinColumn(name = "usuario_id", nullable = false, unique = true)
     private Usuario usuario;
 
-    @Column(name = "obra_social", nullable = false)
-    private String obraSocial;
-
-    @Column(name = "telefono_emergencia", nullable = false)
-    private String telefonoEmergencia;
+    @CreationTimestamp
+    @Column(name = "fecha_ingreso", nullable = false, updatable = false,
+            columnDefinition = "TIMESTAMPTZ")
+    private OffsetDateTime fechaIngreso;
 }

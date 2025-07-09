@@ -19,7 +19,6 @@ public class Dentista extends Usuario{
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "usuario_id", nullable = false, unique = true)
-    @JsonIgnore
     private Usuario usuario;
 
     @Column(unique = true)

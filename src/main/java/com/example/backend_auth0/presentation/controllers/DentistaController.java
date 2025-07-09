@@ -1,10 +1,7 @@
 package com.example.backend_auth0.presentation.controllers;
 
-import com.example.backend_auth0.data.entities.Dentista;
 import com.example.backend_auth0.domain.dto.DentistaDto;
 import com.example.backend_auth0.domain.services.DentistaService;
-import com.example.backend_auth0.presentation.controllers.base.ReadOnlyBaseController;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;

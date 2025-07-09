@@ -1,9 +1,7 @@
 package com.example.backend_auth0.presentation.controllers;
 
-import com.example.backend_auth0.data.entities.Especialidad;
 import com.example.backend_auth0.domain.dto.EspecialidadDto;
 import com.example.backend_auth0.domain.services.EspecialidadService;
-import com.example.backend_auth0.presentation.controllers.base.ReadOnlyBaseController;
 
 import java.util.List;
 

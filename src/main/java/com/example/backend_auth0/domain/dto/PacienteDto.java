@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DentistaDto {
+public class PacienteDto {
     private Long id;
-    private UsuarioDto      usuario;
-    private EspecialidadDto especialidad;
-    private String          matricula;
+    private UsuarioDto usuario;
+    private String obraSocial;
+    private String telefonoEmergencia;
 }

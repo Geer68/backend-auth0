@@ -3,11 +3,8 @@ package com.example.backend_auth0.presentation.controllers.base;
 import com.example.backend_auth0.data.entities.BaseEntity;
 import com.example.backend_auth0.domain.services.base.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
-import java.util.List;
 
 public abstract class ReadOnlyBaseController<E extends BaseEntity, ID extends Serializable, D> {
 
