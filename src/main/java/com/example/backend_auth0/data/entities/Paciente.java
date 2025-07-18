@@ -16,10 +16,6 @@ import lombok.experimental.SuperBuilder;
 @Setter
 public class Paciente extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "usuario_id", nullable = false, unique = true)
     private Usuario usuario;

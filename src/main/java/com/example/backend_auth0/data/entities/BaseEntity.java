@@ -6,6 +6,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
+import java.time.OffsetDateTime;
 
 @MappedSuperclass
 @SuperBuilder
@@ -16,6 +17,4 @@ public abstract class BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private Boolean deleted = false;
 }

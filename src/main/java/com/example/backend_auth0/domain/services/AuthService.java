@@ -12,7 +12,7 @@ import com.example.backend_auth0.data.repository.UsuarioRepository;
 import com.example.backend_auth0.domain.dto.AdministradorDto;
 import com.example.backend_auth0.domain.dto.DentistaDto;
 import com.example.backend_auth0.domain.dto.PacienteDto;
-import com.example.backend_auth0.presentation.dto.request.DatosCreacionCuenta;
+import com.example.backend_auth0.presentation.dto.request.CrearUsuarioRequest;
 import com.example.backend_auth0.presentation.dto.response.AuthResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.AccessDeniedException;
@@ -38,7 +38,7 @@ public class AuthService {
     private final AdministradorMapper administradorMapper;
 
     @Transactional
-    public AuthResponse loginAndGetRole(DatosCreacionCuenta req, Collection<? extends GrantedAuthority> authorities){
+    public AuthResponse loginAndGetRole(CrearUsuarioRequest req, Collection<? extends GrantedAuthority> authorities){
         Usuario usuario = usuarioRepository.findByAuth0Id(req.getAuth0Id()).orElseGet(() -> {
             Usuario u = new Usuario();
             u.setAuth0Id(req.getAuth0Id());

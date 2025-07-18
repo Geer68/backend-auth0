@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class BaseService<E extends BaseEntity, D> {
 
     @Autowired
-    protected BaseRepository<E, Integer> repository;
+    protected BaseRepository<E, Long> repository;
 
     @Autowired
     protected BaseMapper<E, D> mapper;
@@ -22,7 +22,7 @@ public class BaseService<E extends BaseEntity, D> {
                 .collect(Collectors.toList());
     }
 
-    public D findById(Integer id) {
+    public D findById(Long id) {
         E entity = repository.findById(id).orElseThrow(() -> new RuntimeException("Entity not found"));
         return mapper.toDto(entity);
     }

@@ -19,10 +19,6 @@ import java.time.OffsetDateTime;
 @Setter
 public class Administrador extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "usuario_id", nullable = false, unique = true)
     private Usuario usuario;

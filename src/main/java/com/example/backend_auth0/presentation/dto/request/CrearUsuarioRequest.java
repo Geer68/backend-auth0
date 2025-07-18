@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class DatosCreacionCuenta {
+public class CrearUsuarioRequest {
     @NotBlank
     private String auth0Id;
 

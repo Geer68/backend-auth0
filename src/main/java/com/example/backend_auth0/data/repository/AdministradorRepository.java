@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface AdministradorRepository extends BaseRepository<Administrador, Integer> {
+public interface AdministradorRepository extends BaseRepository<Administrador, Long> {
     Optional<Administrador> findByUsuario(Usuario usuario);
 }

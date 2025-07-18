@@ -45,4 +45,7 @@ public class Usuario extends BaseEntity{
     @UpdateTimestamp
     @Column(name = "actualizado_en", nullable = false)
     private OffsetDateTime actualizadoEn;
+
+    @Column(name = "deleted_at")
+    private OffsetDateTime deletedAt;
 }

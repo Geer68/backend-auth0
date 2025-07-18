@@ -46,6 +46,9 @@ public class SecurityConfiguration {
 
 
                         .requestMatchers(HttpMethod.POST, "/api/auth/login").authenticated()
+                        .requestMatchers("/api/especialidades").authenticated()
+                        .requestMatchers("/api/dentistas").authenticated()
+                        .requestMatchers("/api/disponibilidad-dentista").authenticated()
 
 
                         .requestMatchers("/api/admin/**").hasAuthority("administrador")

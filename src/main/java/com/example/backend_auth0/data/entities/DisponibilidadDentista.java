@@ -8,15 +8,16 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalTime;
+import java.time.OffsetDateTime;
 
 @Entity
-@Table(name = "historia_clinica")
+@Table(name = "disponibilidades_dentista")
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class DisponibilidadesDentista extends BaseEntity {
+public class DisponibilidadDentista extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "dentista_id", nullable = false)
@@ -31,4 +32,6 @@ public class DisponibilidadesDentista extends BaseEntity {
     @Column(name = "hora_fin", nullable = false)
     private LocalTime horaFin;
 
+    @Column(name = "deleted_at")
+    private OffsetDateTime deletedAt;
 }
