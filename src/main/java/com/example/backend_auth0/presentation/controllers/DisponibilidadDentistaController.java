@@ -1,7 +1,10 @@
 package com.example.backend_auth0.presentation.controllers;
 
+import com.example.backend_auth0.data.entities.DisponibilidadDentista;
+import com.example.backend_auth0.data.repository.DisponibilidadDentistaRepository;
 import com.example.backend_auth0.domain.dto.DisponibilidadDentistaDto;
 import com.example.backend_auth0.domain.services.DisponibilidadDentistaService;
+import com.example.backend_auth0.presentation.dto.request.ActualizarDisponibilidadDentistaRequest;
 import com.example.backend_auth0.presentation.dto.request.CrearDisponibilidadDentistaRequest;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +19,13 @@ import java.util.List;
 @RequestMapping("/api/disponibilidad-dentista")
 public class DisponibilidadDentistaController {
 
+    private final DisponibilidadDentistaRepository disponibilidadDentistaRepository;
     DisponibilidadDentistaService disponibilidadDentistaService;
 
     @Autowired
-    public DisponibilidadDentistaController(DisponibilidadDentistaService disponibilidadDentistaService) {
+    public DisponibilidadDentistaController(DisponibilidadDentistaService disponibilidadDentistaService, DisponibilidadDentistaRepository disponibilidadDentistaRepository) {
         this.disponibilidadDentistaService = disponibilidadDentistaService;
+        this.disponibilidadDentistaRepository = disponibilidadDentistaRepository;
     }
 
     @PreAuthorize("hasAnyAuthority('administrativo', 'dentista', 'paciente')")
@@ -40,15 +45,21 @@ public class DisponibilidadDentistaController {
     @PreAuthorize("hasAuthority('dentista')")
     @PostMapping("/crear")
     public ResponseEntity<DisponibilidadDentistaDto> create(@RequestBody CrearDisponibilidadDentistaRequest req) {
+        DisponibilidadDentistaDto disponibilidadDentistaDto = disponibilidadDentistaService.create(req);
 
-
+        return ResponseEntity.ok(disponibilidadDentistaDto);
     }
 
-    //@PreAuthorize("hasAuthority('dentista')")
-    //@PatchMapping("/actualizar/${id}")
+    @PreAuthorize("hasAuthority('dentista')")
+    @PatchMapping("/actualizar/{id}")
+    public ResponseEntity<DisponibilidadDentistaDto> update(@PathVariable Long id, @RequestBody ActualizarDisponibilidadDentistaRequest update) {
+        DisponibilidadDentistaDto disponibilidadDentistaDto = disponibilidadDentistaService.updateById(id, update);
+
+        return ResponseEntity.ok(disponibilidadDentistaDto);
+    }
 
     @PreAuthorize("hasAuthority('dentista')")
-    @DeleteMapping("/eliminar/${disponibilidadId}")
+    @DeleteMapping("/eliminar/{disponibilidadId}")
     public ResponseEntity<DisponibilidadDentistaDto> deleteById(@PathVariable Long disponibilidadId){
         DisponibilidadDentistaDto disponibilidadDentistaDto = disponibilidadDentistaService.deleteById(disponibilidadId);
 

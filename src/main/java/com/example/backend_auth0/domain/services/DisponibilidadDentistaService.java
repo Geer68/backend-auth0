@@ -7,6 +7,7 @@ import com.example.backend_auth0.data.repository.DentistaRepository;
 import com.example.backend_auth0.data.repository.DisponibilidadDentistaRepository;
 import com.example.backend_auth0.domain.dto.DisponibilidadDentistaDto;
 import com.example.backend_auth0.domain.services.base.BaseService;
+import com.example.backend_auth0.presentation.dto.request.ActualizarDisponibilidadDentistaRequest;
 import com.example.backend_auth0.presentation.dto.request.CrearDisponibilidadDentistaRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,7 +63,31 @@ public class DisponibilidadDentistaService extends BaseService<DisponibilidadDen
         DisponibilidadDentista disponibilidadDentistaNueva = new DisponibilidadDentista();
         disponibilidadDentistaNueva.setDentista(dentista);
 
+        disponibilidadDentistaNueva.setDiaSemana(req.getDiaSemana());
+        disponibilidadDentistaNueva.setHoraInicio(req.getHoraInicio());
+        disponibilidadDentistaNueva.setHoraFin(req.getHoraFin());
 
+        disponibilidadDentistaRepository.save(disponibilidadDentistaNueva);
+
+        return mapper.toDto(disponibilidadDentistaNueva);
+    }
+
+    public DisponibilidadDentistaDto updateById(Long id, ActualizarDisponibilidadDentistaRequest req){
+        DisponibilidadDentista disponibilidadDentista = disponibilidadDentistaRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Disponibilidad no encontrada"));
+
+        if (req.getDiaSemana() != null) {
+            disponibilidadDentista.setDiaSemana(req.getDiaSemana());
+        }
+        if (req.getHoraInicio() != null) {
+            disponibilidadDentista.setHoraInicio(req.getHoraInicio());
+        }
+        if (req.getHoraFin() != null) {
+            disponibilidadDentista.setHoraFin(req.getHoraFin());
+        }
+
+        disponibilidadDentistaRepository.save(disponibilidadDentista);
+        return mapper.toDto(disponibilidadDentista);
 
     }
 
