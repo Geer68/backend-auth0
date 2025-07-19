@@ -52,10 +52,4 @@ public class DentistaController {
         DentistaDto dentista = dentistaService.update(id, dentistaReq);
         return ResponseEntity.ok(dentista);
     }
-
-    @PreAuthorize("hasAuthority('dentista')")
-    @GetMapping("/test")
-    public ResponseEntity<?> test(Authentication authentication) {
-        return ResponseEntity.ok(authentication.getPrincipal());
-    }
 }

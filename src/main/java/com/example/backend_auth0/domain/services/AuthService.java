@@ -52,7 +52,6 @@ public class AuthService {
             p.setObraSocial("Sin obra social");
             p.setTelefonoEmergencia("Sin teléfono de emergencia");
             pacienteRepository.save(p);
-
             auth0MgmtService.assignRolesToUser(req.getAuth0Id(),
                     List.of("rol_Xs6RxbMgq4JeGEGN"));
             return u;
@@ -66,6 +65,7 @@ public class AuthService {
         PacienteDto patientDto = null;
         DentistaDto dentistDto = null;
         AdministradorDto administradorDto = null;
+
 
         switch (jwtRole) {
             case "paciente" -> {

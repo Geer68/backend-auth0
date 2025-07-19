@@ -18,13 +18,12 @@ public class DisponibilidadDentistaController {
     DisponibilidadDentistaService disponibilidadDentistaService;
 
     @Autowired
-    public DisponibilidadDentistaController(DisponibilidadDentistaService disponibilidadDentistaService, DisponibilidadDentistaRepository disponibilidadDentistaRepository) {
+    public DisponibilidadDentistaController(DisponibilidadDentistaService disponibilidadDentistaService) {
         this.disponibilidadDentistaService = disponibilidadDentistaService;
-        this.disponibilidadDentistaRepository = disponibilidadDentistaRepository;
     }
 
     @PreAuthorize("hasAnyAuthority('administrativo', 'dentista', 'paciente')")
-    @GetMapping("/todos")
+    @GetMapping()
     public ResponseEntity<List<DisponibilidadDentistaDto>> getAll(){
         List<DisponibilidadDentistaDto> disponibilidadDentistaDtos = disponibilidadDentistaService.findAll();
         return ResponseEntity.ok(disponibilidadDentistaDtos);
