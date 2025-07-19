@@ -1,6 +1,5 @@
 package com.example.backend_auth0.presentation.dto.request;
 
-import com.example.backend_auth0.domain.dto.DentistaDto;
 import lombok.Data;
 
 import java.time.LocalTime;

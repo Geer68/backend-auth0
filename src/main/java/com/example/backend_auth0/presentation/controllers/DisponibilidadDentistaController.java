@@ -1,25 +1,20 @@
 package com.example.backend_auth0.presentation.controllers;
 
-import com.example.backend_auth0.data.entities.DisponibilidadDentista;
 import com.example.backend_auth0.data.repository.DisponibilidadDentistaRepository;
 import com.example.backend_auth0.domain.dto.DisponibilidadDentistaDto;
 import com.example.backend_auth0.domain.services.DisponibilidadDentistaService;
 import com.example.backend_auth0.presentation.dto.request.ActualizarDisponibilidadDentistaRequest;
 import com.example.backend_auth0.presentation.dto.request.CrearDisponibilidadDentistaRequest;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/disponibilidad-dentista")
 public class DisponibilidadDentistaController {
 
-    private final DisponibilidadDentistaRepository disponibilidadDentistaRepository;
     DisponibilidadDentistaService disponibilidadDentistaService;
 
     @Autowired
