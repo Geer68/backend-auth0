@@ -39,6 +39,8 @@ public class AuthService {
 
     @Transactional
     public AuthResponse loginAndGetRole(CrearUsuarioRequest req, Collection<? extends GrantedAuthority> authorities){
+        boolean isNew = usuarioRepository.findByAuth0Id(req.getAuth0Id()).isEmpty();
+
         Usuario usuario = usuarioRepository.findByAuth0Id(req.getAuth0Id()).orElseGet(() -> {
             Usuario u = new Usuario();
             u.setAuth0Id(req.getAuth0Id());
@@ -56,6 +58,13 @@ public class AuthService {
                     List.of("rol_Xs6RxbMgq4JeGEGN"));
             return u;
         });
+
+        if (isNew) {
+            var dto = pacienteMapper.toDto(
+                    pacienteRepository.findByUsuario(usuario).get()
+            );
+            return new AuthResponse("paciente", dto, null, null);
+        }
 
         String jwtRole = authorities.stream()
                 .map(GrantedAuthority::getAuthority)
