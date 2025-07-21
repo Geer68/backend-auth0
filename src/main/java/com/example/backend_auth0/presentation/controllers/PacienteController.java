@@ -1,5 +1,6 @@
 package com.example.backend_auth0.presentation.controllers;
 
+import com.example.backend_auth0.domain.dto.EntradaHistoriaClinicaDto;
 import com.example.backend_auth0.domain.dto.PacienteDto;
 import com.example.backend_auth0.domain.services.PacienteService;
 import com.example.backend_auth0.presentation.dto.request.ActualizarPacienteRequest;
@@ -76,7 +77,7 @@ public class PacienteController {
     @PreAuthorize("hasAnyAuthority('administrador', 'dentista')")
     @GetMapping("/{id}/historia-clinica")
     public ResponseEntity<Object> getHistoriaClinica(@PathVariable Long id) {
-        Object historiaClinica = pacienteService.getHistoriaClinica(id); // puede devolver un DTO personalizado
+        List<EntradaHistoriaClinicaDto> historiaClinica = pacienteService.getHistoriaClinica(id); // puede devolver un DTO personalizado
         return ResponseEntity.ok(historiaClinica);
     }
 
@@ -84,7 +85,7 @@ public class PacienteController {
     @GetMapping("/me/historia-clinica")
     public ResponseEntity<Object> getMyHistoriaClinica(@AuthenticationPrincipal Jwt principal) {
         String auth0Id = principal.getClaimAsString("sub");
-        Object historiaClinica = pacienteService.getHistoriaClinicaByAuth0(auth0Id);
+        List<EntradaHistoriaClinicaDto> historiaClinica = pacienteService.getHistoriaClinicaByAuth0Id(auth0Id);
         return ResponseEntity.ok(historiaClinica);
     }
 }

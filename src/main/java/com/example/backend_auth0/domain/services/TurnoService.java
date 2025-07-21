@@ -29,9 +29,8 @@ public class TurnoService extends BaseService<Turno, TurnoDto> {
     private DentistaRepository dentistaRepository;
 
     @Autowired
-    public TurnoService(TurnoRepository turnoRepository, TurnoMapper turnoMapper, PacienteRepository pacienteRepository, DentistaRepository dentistaRepository) {
+    public TurnoService(TurnoRepository turnoRepository, PacienteRepository pacienteRepository, DentistaRepository dentistaRepository) {
         this.turnoRepository = turnoRepository;
-        this.turnoMapper = turnoMapper;
         this.pacienteRepository = pacienteRepository;
         this.dentistaRepository = dentistaRepository;
     }
