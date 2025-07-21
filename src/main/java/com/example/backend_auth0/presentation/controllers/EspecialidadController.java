@@ -41,14 +41,14 @@ public class EspecialidadController {
     }
 
     @PreAuthorize("hasAuthority('administrador')")
-    @PatchMapping("/actualizar/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<EspecialidadDto> update(@RequestBody EspecialidadRequest especialidadReq, @PathVariable Long id) {
         EspecialidadDto especialidad = especialidadService.update(id, especialidadReq);
         return ResponseEntity.ok(especialidad);
     }
 
     @PreAuthorize("hasAuthority('administrador')")
-    @PostMapping("/eliminar/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<EspecialidadDto> delete(@PathVariable Long id) {
         EspecialidadDto especialidad = especialidadService.delete(id);
         return ResponseEntity.ok(especialidad);

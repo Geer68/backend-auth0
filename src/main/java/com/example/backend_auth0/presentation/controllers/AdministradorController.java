@@ -21,7 +21,6 @@ public class AdministradorController {
         this.administradorService = administradorService;
     }
 
-
     @PreAuthorize("hasAuthority('administrador')")
     @GetMapping
     public ResponseEntity<List<AdministradorDto>> getAll() {
@@ -45,6 +44,4 @@ public class AdministradorController {
         administradorService.cambiarRol(id, request);
         return ResponseEntity.ok().build();
     }
-
-
 }

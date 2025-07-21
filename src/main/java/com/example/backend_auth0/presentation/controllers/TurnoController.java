@@ -3,6 +3,7 @@ package com.example.backend_auth0.presentation.controllers;
 import com.example.backend_auth0.data.enums.EstadoTurno;
 import com.example.backend_auth0.domain.dto.TurnoDto;
 import com.example.backend_auth0.domain.services.TurnoService;
+import com.example.backend_auth0.presentation.dto.request.ActualizarEstadoTurno;
 import com.example.backend_auth0.presentation.dto.request.ActualizarTurnoRequest;
 import com.example.backend_auth0.presentation.dto.request.CrearTurnoRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//...
+
 @RestController
 @RequestMapping("/api/turno")
 public class TurnoController {
@@ -66,8 +67,9 @@ public class TurnoController {
 
     @PreAuthorize("hasAnyAuthority('administrador', 'dentista')")
     @PatchMapping("/estado/{id}")
-    public ResponseEntity<TurnoDto> cambiarEstado(@PathVariable Long id, @RequestParam EstadoTurno nuevoEstado) {
-        TurnoDto actualizado = turnoService.cambiarEstado(id, nuevoEstado);
+    public ResponseEntity<TurnoDto> cambiarEstado(@PathVariable Long id, @RequestBody ActualizarEstadoTurno estado) {
+        System.out.println(estado);
+        TurnoDto actualizado = turnoService.cambiarEstado(id, estado);
         return ResponseEntity.ok(actualizado);
     }
 

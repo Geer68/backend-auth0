@@ -1,8 +1,6 @@
 package com.example.backend_auth0.data.mapper;
 
-import com.example.backend_auth0.data.entities.DisponibilidadDentista;
 import com.example.backend_auth0.data.entities.Turno;
-import com.example.backend_auth0.domain.dto.DisponibilidadDentistaDto;
 import com.example.backend_auth0.domain.dto.TurnoDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;

@@ -4,12 +4,12 @@ import com.example.backend_auth0.data.entities.Dentista;
 import com.example.backend_auth0.data.entities.Paciente;
 import com.example.backend_auth0.data.entities.Turno;
 import com.example.backend_auth0.data.enums.EstadoTurno;
-import com.example.backend_auth0.data.mapper.TurnoMapper;
 import com.example.backend_auth0.data.repository.DentistaRepository;
 import com.example.backend_auth0.data.repository.PacienteRepository;
 import com.example.backend_auth0.data.repository.TurnoRepository;
 import com.example.backend_auth0.domain.dto.TurnoDto;
 import com.example.backend_auth0.domain.services.base.BaseService;
+import com.example.backend_auth0.presentation.dto.request.ActualizarEstadoTurno;
 import com.example.backend_auth0.presentation.dto.request.ActualizarTurnoRequest;
 import com.example.backend_auth0.presentation.dto.request.CrearTurnoRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -147,11 +147,12 @@ public class TurnoService extends BaseService<Turno, TurnoDto> {
         return mapper.toDto(turno);
     }
 
-    public TurnoDto cambiarEstado(Long id, EstadoTurno nuevoEstado){
+    public TurnoDto cambiarEstado(Long id, ActualizarEstadoTurno nuevoEstado){
         Turno turno = turnoRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Turno no encontrado"));
 
-        turno.setEstado(nuevoEstado);
+
+        turno.setEstado(nuevoEstado.getEstado());
         turnoRepository.save(turno);
         return mapper.toDto(turno);
     }

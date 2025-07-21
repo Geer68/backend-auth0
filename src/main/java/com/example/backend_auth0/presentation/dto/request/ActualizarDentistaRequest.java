@@ -1,6 +1,5 @@
 package com.example.backend_auth0.presentation.dto.request;
 
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -9,6 +8,7 @@ import java.time.LocalDate;
 
 @Data
 public class ActualizarDentistaRequest {
+
     private String nombre;
 
     private String apellido;
