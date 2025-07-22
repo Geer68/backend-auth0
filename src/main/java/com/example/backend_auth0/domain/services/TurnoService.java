@@ -106,24 +106,11 @@ public class TurnoService extends BaseService<Turno, TurnoDto> {
         Turno turno = turnoRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Turno no encontrado"));
 
-        if(req.getFechaHora() != null){
-            turno.setFechaHora(req.getFechaHora());
-        }
-
-        if(req.getEstado() != null){
-            turno.setEstado(req.getEstado());
-        }
-
-        if(req.getNotasTratamiento() != null){
-            turno.setNotasTratamiento(req.getNotasTratamiento());
-        }
-
-        if(req.getComentarios() != null){
-            turno.setComentarios(req.getComentarios());
-        }
+        turno.setEstado(req.getEstado());
+        turno.setComentarios(req.getComentarios());
+        turno.setNotasTratamiento(req.getNotasTratamiento());
 
         turnoRepository.save(turno);
-
         return mapper.toDto(turno);
     }
 

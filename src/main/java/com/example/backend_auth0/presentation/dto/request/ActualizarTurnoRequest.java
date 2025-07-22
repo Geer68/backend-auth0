@@ -10,12 +10,7 @@ import java.time.OffsetDateTime;
 
 @Data
 public class ActualizarTurnoRequest {
-    private OffsetDateTime fechaHora;
-    @NotNull
     private EstadoTurno estado;
-
-    @NotNull
     private String notasTratamiento;
-
     private String comentarios;
 }

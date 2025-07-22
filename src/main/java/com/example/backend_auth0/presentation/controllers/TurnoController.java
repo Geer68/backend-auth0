@@ -90,7 +90,6 @@ public class TurnoController {
     @PreAuthorize("hasAnyAuthority('administrador', 'dentista')")
     @PatchMapping("/actualizar/{id}")
     public ResponseEntity<TurnoDto> update(@PathVariable Long id, @RequestBody ActualizarTurnoRequest req){
-        System.out.println(req);
         TurnoDto turno = turnoService.update(id, req);
         return ResponseEntity.ok(turno);
     }
