@@ -6,6 +6,7 @@ import com.example.backend_auth0.data.entities.Usuario;
 import com.example.backend_auth0.data.mapper.DentistaMapper;
 import com.example.backend_auth0.data.mapper.EspecialidadMapperImpl;
 import com.example.backend_auth0.data.repository.DentistaRepository;
+import com.example.backend_auth0.data.repository.UsuarioRepository;
 import com.example.backend_auth0.domain.dto.DentistaDto;
 import com.example.backend_auth0.domain.dto.EspecialidadDto;
 import com.example.backend_auth0.domain.services.base.BaseService;
@@ -28,31 +29,34 @@ public class DentistaService extends BaseService<Dentista, DentistaDto> {
     private final DentistaMapper dentistaMapper;
     private final EspecialidadService especialidadService;
     private final EspecialidadMapperImpl especialidadMapperImpl;
+    private UsuarioRepository usuarioRepository;
+
 
     @Autowired
-    public DentistaService(DentistaRepository dentistaRepository, DentistaMapper dentistaMapper, EspecialidadService especialidadService, EspecialidadMapperImpl especialidadMapperImpl) {
+    public DentistaService(DentistaRepository dentistaRepository, DentistaMapper dentistaMapper, EspecialidadService especialidadService, EspecialidadMapperImpl especialidadMapperImpl, UsuarioRepository usuarioRepository) {
         this.dentistaRepository = dentistaRepository;
         this.dentistaMapper = dentistaMapper;
         this.mapper = dentistaMapper;
         this.especialidadService = especialidadService;
         this.especialidadMapperImpl = especialidadMapperImpl;
+        this.usuarioRepository = usuarioRepository;
     }
 
     public List<DentistaDto> findAllDtos() {
-        return dentistaRepository.findAllByDeletedAtIsNull()
+        return dentistaRepository.findAllByUsuarioDeletedAtIsNull()
                 .stream()
                 .map(dentistaMapper::toDto)
                 .collect(Collectors.toList());
     }
 
     public DentistaDto findDtoById(Long id) {
-        Dentista dentista = dentistaRepository.findByIdAndDeletedAtIsNull(id)
+        Dentista dentista = dentistaRepository.findByIdAndUsuarioDeletedAtIsNull(id)
                 .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Dentista no encontrado"));
         return dentistaMapper.toDto(dentista);
     }
 
     public DentistaDto update(Long id, ActualizarDentistaRequest dentistaReq) {
-        Dentista dentista = dentistaRepository.findByIdAndDeletedAtIsNull(id)
+        Dentista dentista = dentistaRepository.findByIdAndUsuarioDeletedAtIsNull(id)
                 .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Dentista no encontrado"));
 
         Usuario user = dentista.getUsuario();
@@ -81,7 +85,9 @@ public class DentistaService extends BaseService<Dentista, DentistaDto> {
         Dentista dentista = dentistaRepository.findById(id)
                 .orElseThrow(()-> new ResponseStatusException(NOT_FOUND, "Dentista no encontrado"));
         OffsetDateTime deletedAt = OffsetDateTime.now();
-        dentista.setDeletedAt(deletedAt);
+        Usuario u = dentista.getUsuario();
+        u.setDeletedAt(deletedAt);
+        usuarioRepository.save(u);
         dentistaRepository.save(dentista);
         return dentistaMapper.toDto(dentista);
     }

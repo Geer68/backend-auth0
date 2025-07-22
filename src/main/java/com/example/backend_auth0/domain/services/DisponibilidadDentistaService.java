@@ -44,7 +44,7 @@ public class DisponibilidadDentistaService extends BaseService<DisponibilidadDen
     }
 
     public List<DisponibilidadDentistaDto> getByDentistaId(Long dentistaId){
-        List<DisponibilidadDentista> disponibilidadDentista = disponibilidadDentistaRepository.findByDentistaIdAndDentistaDeletedAtIsNull(dentistaId);
+        List<DisponibilidadDentista> disponibilidadDentista = disponibilidadDentistaRepository.findByDentistaIdAndDentistaUsuarioDeletedAtIsNull(dentistaId);
 
         if(disponibilidadDentista.isEmpty()){
             throw new ResponseStatusException(NOT_FOUND, "Disponibilidades no encontradas");

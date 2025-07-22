@@ -1,0 +1,33 @@
+services:
+  db:
+    image: postgres:15.13
+    container_name: distribuidos_db
+    env_file:
+      - .env
+    volumes:
+        - pgdata:/var/lib/postgresql/data
+    networks:
+        - app-network
+    ports:
+        - "5432:5432"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: distribuidos_app
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+volumes:
+  pgdata:
+
+networks:
+  app-network:
+    driver: bridge

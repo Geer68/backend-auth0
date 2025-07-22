@@ -10,8 +10,7 @@ import java.util.List;
 @Repository
 public interface DisponibilidadDentistaRepository extends BaseRepository<DisponibilidadDentista, Long> {
 
-    @Query("SELECT d FROM DisponibilidadDentista d WHERE d.dentista.deletedAt IS NULL AND d.deletedAt IS NULL")
-    List<DisponibilidadDentista> findAll();
+    List<DisponibilidadDentista> findAllByDentistaUsuarioDeletedAtIsNullAndDeletedAtIsNull();
+    List<DisponibilidadDentista>  findByDentistaIdAndDentistaUsuarioDeletedAtIsNull(Long dentistaId);
 
-    List<DisponibilidadDentista> findByDentistaIdAndDentistaDeletedAtIsNull(Long dentistaId);
 }

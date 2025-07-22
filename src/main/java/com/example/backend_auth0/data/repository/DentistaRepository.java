@@ -12,6 +12,6 @@ import java.util.Optional;
 public interface DentistaRepository extends BaseRepository<Dentista, Long> {
     Optional<Dentista> findByUsuario(Usuario usuario);
     Optional<Dentista> findByUsuarioId(Long usuarioId);
-    List<Dentista> findAllByDeletedAtIsNull();
-    Optional<Dentista> findByIdAndDeletedAtIsNull(Long id);
+    List<Dentista>    findAllByUsuarioDeletedAtIsNull();
+    Optional<Dentista> findByIdAndUsuarioDeletedAtIsNull(Long id);
 }

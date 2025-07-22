@@ -39,6 +39,10 @@ dependencies {
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
 }
 
+springBoot {
+	mainClass = 'com.example.backend_auth0.BackendAuth0Application'
+}
+
 tasks.named('test') {
 	useJUnitPlatform()
 }
