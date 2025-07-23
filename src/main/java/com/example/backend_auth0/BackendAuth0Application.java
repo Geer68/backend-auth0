@@ -25,60 +25,60 @@ public class BackendAuth0Application {
 		System.out.println("Backend Auth0 Application is running! Ready to handle requests.");
 	}
 
-	@Bean
-	public CommandLineRunner dataLoader(
-			UsuarioRepository usuarioRepository,
-			EspecialidadRepository especialidadRepository,
-			AdministradorRepository administradorRepository,
-			DentistaRepository dentistaRepository
-	){
-		return args -> {
-
-			Especialidad odontologia = new Especialidad("Odontología General");
-			Especialidad ortodoncia = new Especialidad("Ortodoncia");
-			Especialidad endodoncia = new Especialidad("Endodoncia");
-			Especialidad periodoncia = new Especialidad("Periodoncia");
-			Especialidad cirugiaOral = new Especialidad("Cirugía Oral");
-			especialidadRepository.saveAll(List.of(
-					odontologia,
-					ortodoncia,
-					endodoncia,
-					periodoncia,
-					cirugiaOral
-			));
-
-			Usuario adminUser = Usuario.builder()
-					.auth0Id("google-oauth2|108508741747669676481")
-					.nombre("Ger")
-					.apellido("Hidalgo")
-					.email("germhidalgo@gmail.com")
-					.build();
-
-			usuarioRepository.save(adminUser);
-
-			Administrador administrador = Administrador.builder()
-					.usuario(adminUser)
-					.build();
-
-			administradorRepository.save(administrador);
-
-			Usuario dentistaUser = Usuario.builder()
-					.auth0Id("google-oauth2|112729835259215619527")
-					.nombre("Florencio")
-					.apellido("Saul")
-					.email("aftercodesoftware@gmail.com")
-					.build();
-
-			usuarioRepository.save(dentistaUser);
-
-			Dentista dentista = Dentista.builder()
-					.usuario(dentistaUser)
-					.matricula("123456")
-					.especialidad(odontologia)
-					.build();
-
-			dentistaRepository.save(dentista);
-		};
-	}
+//	@Bean
+//	public CommandLineRunner dataLoader(
+//			UsuarioRepository usuarioRepository,
+//			EspecialidadRepository especialidadRepository,
+//			AdministradorRepository administradorRepository,
+//			DentistaRepository dentistaRepository
+//	){
+//		return args -> {
+//
+//			Especialidad odontologia = new Especialidad("Odontología General");
+//			Especialidad ortodoncia = new Especialidad("Ortodoncia");
+//			Especialidad endodoncia = new Especialidad("Endodoncia");
+//			Especialidad periodoncia = new Especialidad("Periodoncia");
+//			Especialidad cirugiaOral = new Especialidad("Cirugía Oral");
+//			especialidadRepository.saveAll(List.of(
+//					odontologia,
+//					ortodoncia,
+//					endodoncia,
+//					periodoncia,
+//					cirugiaOral
+//			));
+//
+//			Usuario adminUser = Usuario.builder()
+//					.auth0Id("google-oauth2|108508741747669676481")
+//					.nombre("Ger")
+//					.apellido("Hidalgo")
+//					.email("germhidalgo@gmail.com")
+//					.build();
+//
+//			usuarioRepository.save(adminUser);
+//
+//			Administrador administrador = Administrador.builder()
+//					.usuario(adminUser)
+//					.build();
+//
+//			administradorRepository.save(administrador);
+//
+//			Usuario dentistaUser = Usuario.builder()
+//					.auth0Id("google-oauth2|112729835259215619527")
+//					.nombre("Florencio")
+//					.apellido("Saul")
+//					.email("aftercodesoftware@gmail.com")
+//					.build();
+//
+//			usuarioRepository.save(dentistaUser);
+//
+//			Dentista dentista = Dentista.builder()
+//					.usuario(dentistaUser)
+//					.matricula("123456")
+//					.especialidad(odontologia)
+//					.build();
+//
+//			dentistaRepository.save(dentista);
+//		};
+//	}
 
 }

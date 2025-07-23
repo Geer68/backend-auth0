@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RestController
 @RequestMapping("/api/turno")
 public class TurnoController {
@@ -27,7 +26,7 @@ public class TurnoController {
 
     @PreAuthorize("hasAuthority('administrador')")
     @GetMapping()
-    public ResponseEntity<List<TurnoDto>> getAll(){
+    public ResponseEntity<List<TurnoDto>> getAll() {
         List<TurnoDto> turnos = turnoService.getAll();
 
         return ResponseEntity.ok(turnos);
@@ -35,15 +34,14 @@ public class TurnoController {
 
     @PreAuthorize("hasAnyAuthority('administrador', 'dentista', 'paciente')")
     @GetMapping("/{id}")
-    public ResponseEntity<TurnoDto> getById(@PathVariable Long id){
+    public ResponseEntity<TurnoDto> getById(@PathVariable Long id) {
         TurnoDto turno = turnoService.getById(id);
         return ResponseEntity.ok(turno);
     }
 
-
     @PreAuthorize("hasAnyAuthority('administrador', 'dentista', 'paciente')")
     @GetMapping("/paciente/{id}")
-    public ResponseEntity<List<TurnoDto>> getByPacienteId(@PathVariable Long id){
+    public ResponseEntity<List<TurnoDto>> getByPacienteId(@PathVariable Long id) {
         List<TurnoDto> turnos = turnoService.getTurnoByPacienteId(id);
 
         return ResponseEntity.ok(turnos);
@@ -51,7 +49,7 @@ public class TurnoController {
 
     @PreAuthorize("hasAnyAuthority('administrador', 'dentista')")
     @GetMapping("/dentista/{id}")
-    public ResponseEntity<List<TurnoDto>> getTurnoFromDentista(@PathVariable Long id){
+    public ResponseEntity<List<TurnoDto>> getTurnoFromDentista(@PathVariable Long id) {
         List<TurnoDto> turnos = turnoService.getTurnoByDentistaId(id);
 
         return ResponseEntity.ok(turnos);
@@ -59,7 +57,7 @@ public class TurnoController {
 
     @PreAuthorize("hasAnyAuthority('administrador', 'dentista')")
     @PostMapping("/crear")
-    public ResponseEntity<TurnoDto> create(@RequestBody CrearTurnoRequest turnoRequest){
+    public ResponseEntity<TurnoDto> create(@RequestBody CrearTurnoRequest turnoRequest) {
         TurnoDto turnoDto = turnoService.create(turnoRequest);
 
         return ResponseEntity.ok(turnoDto);
@@ -89,8 +87,15 @@ public class TurnoController {
 
     @PreAuthorize("hasAnyAuthority('administrador', 'dentista')")
     @PatchMapping("/actualizar/{id}")
-    public ResponseEntity<TurnoDto> update(@PathVariable Long id, @RequestBody ActualizarTurnoRequest req){
+    public ResponseEntity<TurnoDto> update(@PathVariable Long id, @RequestBody ActualizarTurnoRequest req) {
         TurnoDto turno = turnoService.update(id, req);
+        return ResponseEntity.ok(turno);
+    }
+
+    @PreAuthorize("hasAuthority('administrador')")
+    @PutMapping("/editar/{id}")
+    public ResponseEntity<TurnoDto> editar(@PathVariable Long id, @RequestBody CrearTurnoRequest req) {
+        TurnoDto turno = turnoService.editarTurno(id, req);
         return ResponseEntity.ok(turno);
     }
 }
